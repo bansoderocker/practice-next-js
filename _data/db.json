@@ -1,0 +1,289 @@
+{
+  "Trip": {
+    "trip1698129208742": {
+      "CreatedOn": "10/27/2023 21:49:06",
+      "Expense": "[{\"ExpenseTitle\":\"disel\",\"ExpenseAmount\":\"1000\"}]",
+      "ExpenseFinal": 1200,
+      "ExpenseOther": "200",
+      "ExpenseTotal": "1000",
+      "Particular": "kalamboli to kalamboli",
+      "PartyName": "thorve",
+      "TripAmount": "2000",
+      "TripDate": "2023-10-24",
+      "TruckNumber": "6253",
+      "key": "trip1698129208742"
+    },
+    "trip1698422470484": {
+      "CreatedOn": "10/27/2023 21:50:27",
+      "Expense": "[{\"ExpenseTitle\":\"dISEL\",\"ExpenseAmount\":\"500\"},{\"ExpenseTitle\":\"eNTRY\",\"ExpenseAmount\":\"100\"},{\"ExpenseTitle\":\"extra\",\"ExpenseAmount\":\"200\"}]",
+      "ExpenseFinal": 800,
+      "ExpenseOther": "0",
+      "ExpenseTotal": "800",
+      "Particular": "KALAMBOLI TO TALOJA",
+      "PartyName": "MAX TECH",
+      "TripAmount": "2000",
+      "TripDate": "2023-10-27",
+      "TruckNumber": "MH06AR6253",
+      "key": "trip1698422470484"
+    },
+    "trip1698563951504": {
+      "CreatedOn": "10/29/2023 18:20:45",
+      "Expense": "[{\"Id\":1,\"ExpenseTitle\":\"DISEL\",\"ExpenseAmount\":\"100\"}]",
+      "ExpenseFinal": 200,
+      "ExpenseOther": 0,
+      "ExpenseTotal": 200,
+      "Particular": "mumbai to mumbai",
+      "PartyName": "mico steel",
+      "TripAmount": 10001,
+      "TripDate": "2023-10-09",
+      "TruckNumber": "MH06AR6253",
+      "key": "trip1698563951504"
+    },
+    "trip1700376946482": {
+      "BillName": "Tushar Roadlines",
+      "BillNumber": "2382",
+      "CreatedOn": "11/19/2023 14:30:30",
+      "Expense": "[]",
+      "ExpenseFinal": 0,
+      "ExpenseOther": 0,
+      "ExpenseTotal": 0,
+      "Particular": "Kalamboli To Chembur",
+      "PartyName": "Amol Steel",
+      "TripAmount": 8700,
+      "TripDate": "2023-09-13",
+      "TruckNumber": "MH46AR5578",
+      "key": "trip1700376946482"
+    },
+    "trip1700885222151": {
+      "BillName": "Ajay Vijay Roadlines",
+      "BillNumber": "735",
+      "CreatedOn": "11/25/2023 09:37:02",
+      "Expense": "[]",
+      "ExpenseFinal": 0,
+      "ExpenseOther": 0,
+      "ExpenseTotal": 0,
+      "Particular": "Kalamboli To Pawane",
+      "PartyName": "DJ Shah",
+      "TripAmount": 5200,
+      "TripDate": "2022-05-27",
+      "TruckNumber": "MH46CP2155",
+      "key": "trip1700885222151"
+    },
+    "trip1700885356540": {
+      "BillName": "Tushar Roadlines",
+      "BillNumber": "1857",
+      "CreatedOn": "11/25/2023 09:39:16",
+      "Expense": "[]",
+      "ExpenseFinal": 0,
+      "ExpenseOther": 0,
+      "ExpenseTotal": 0,
+      "Particular": "Kalamboli TO Jogeshwari",
+      "PartyName": "DJ SHAH",
+      "TripAmount": 7173,
+      "TripDate": "2022-06-16",
+      "TruckNumber": "4282",
+      "key": "trip1700885356540"
+    },
+    "trip1700885479269": {
+      "BillName": "Tushar Roadlines",
+      "BillNumber": "1882",
+      "CreatedOn": "11/25/2023 09:41:19",
+      "Expense": "[]",
+      "ExpenseFinal": 0,
+      "ExpenseOther": 0,
+      "ExpenseTotal": 0,
+      "Particular": "Kalamboli TO Jogeshwari",
+      "PartyName": "DJ SHAH",
+      "TripAmount": 7100,
+      "TripDate": "2022-07-07",
+      "TruckNumber": "MH46AR3513",
+      "key": "trip1700885479269"
+    },
+    "trip1700888561880": {
+      "BillName": "Tushar Roadlines",
+      "BillNumber": "1890",
+      "CreatedOn": "11/25/2023 10:32:41",
+      "Expense": "[]",
+      "ExpenseFinal": 0,
+      "ExpenseOther": 0,
+      "ExpenseTotal": 0,
+      "Particular": "Kalamboli To Andheri",
+      "PartyName": "DJ SHAH",
+      "TripAmount": 6700,
+      "TripDate": "2022-07-14",
+      "TruckNumber": "4282",
+      "key": "trip1700888561880"
+    },
+    "trip1700888669305": {
+      "BillName": "Tushar Roadlines",
+      "BillNumber": "1911",
+      "CreatedOn": "11/25/2023 10:34:29",
+      "Expense": "[]",
+      "ExpenseFinal": 0,
+      "ExpenseOther": 0,
+      "ExpenseTotal": 0,
+      "Particular": "Kalamboli To Jogeshwari",
+      "PartyName": "DJ SHAH",
+      "TripAmount": 7341,
+      "TripDate": "2022-08-12",
+      "TruckNumber": "4282",
+      "key": "trip1700888669305"
+    }
+  },
+  "Wallet": {
+    "-NbjhYNY43ZxjSsdUuM6": {
+      "amount": 100,
+      "description": "",
+      "expense": "Self",
+      "key": "-NbjhYNY43ZxjSsdUuM6",
+      "paymentDate": "1-8-2023",
+      "paymentMode": "Cash"
+    },
+    "-Nbjn6aHS-HGW1YmVbRI": {
+      "amount": 200,
+      "description": "",
+      "expense": "Self",
+      "key": "-Nbjn6aHS-HGW1YmVbRI",
+      "paymentDate": "13-8-2023",
+      "paymentMode": "Cash",
+      "receiverName": "aj"
+    },
+    "-NbjnEFi0bwXUTpSRykX": {
+      "amount": 90,
+      "description": "",
+      "expense": "Self",
+      "key": "-NbjnEFi0bwXUTpSRykX",
+      "paymentDate": "9-8-2023",
+      "paymentMode": "Bank Of India",
+      "receiverName": "aj"
+    },
+    "-NbjqZyqCk0kTZMKeqmN": {
+      "amount": 10000000,
+      "description": "",
+      "expense": "Daily Work",
+      "key": "-NbjqZyqCk0kTZMKeqmN",
+      "paymentDate": "15-8-2023",
+      "paymentMode": "Bank Of India",
+      "receiverName": "shivani"
+    },
+    "-Nf63ZzsbYRwpgjc_mWB": {
+      "amount": 200,
+      "description": "",
+      "expense": "Self",
+      "key": "-Nf63ZzsbYRwpgjc_mWB",
+      "paymentDate": "24-9-2023",
+      "paymentMode": "Cash",
+      "receiverName": "abc"
+    },
+    "-Nf63uMxgIqsIdlucQyG": {
+      "amount": 200,
+      "description": "",
+      "expense": "Self",
+      "key": "-Nf63uMxgIqsIdlucQyG",
+      "paymentDate": "24-9-2023",
+      "paymentMode": "Cash",
+      "receiverName": "abc"
+    },
+    "-Nf6412UCgYscGP9cDZi": {
+      "amount": 9068,
+      "description": "",
+      "expense": "Self",
+      "key": "-Nf6412UCgYscGP9cDZi",
+      "paymentDate": "24-9-2023",
+      "paymentMode": "Cash",
+      "receiverName": "abc"
+    }
+  },
+  "bill": {
+    "bill_1": {
+      "billName": "Tushar Roadlines",
+      "key": "bill_1"
+    },
+    "bill_2": {
+      "billName": "Ajay Vijay Roadlines",
+      "key": "bill_2"
+    }
+  },
+  "party": {
+    "party-1699883197837": {
+      "CreatedOn": "11/13/2023 19:16:37",
+      "key": "party-1699883197837",
+      "pageNumber": "1",
+      "partyName": "SATRE (OMKAR CONTAINER)",
+      "remark": ""
+    },
+    "party-1699883424614": {
+      "CreatedOn": "11/13/2023 19:20:24",
+      "key": "party-1699883424614",
+      "pageNumber": "4",
+      "partyName": "DIMPAY ENTERPRISE",
+      "remark": "119"
+    },
+    "party-1700384432296": {
+      "CreatedOn": "11/19/2023 14:30:32",
+      "key": "party-1700384432296",
+      "pageNumber": 0,
+      "partyName": "AMOL STEEL",
+      "remark": "auto added"
+    },
+    "party-1700885226918": {
+      "CreatedOn": "11/25/2023 09:37:06",
+      "key": "party-1700885226918",
+      "pageNumber": 0,
+      "partyName": "DJ SHAH",
+      "remark": "auto added"
+    }
+  },
+  "truck": {
+    "truck-1699769962058": {
+      "CreatedOn": "11/12/2023 15:12:34",
+      "TruckNumber": "MH46AR6253",
+      "key": "truck-1699769962058"
+    },
+    "truck-1699782308073": {
+      "CreatedOn": "11/12/2023 15:15:08",
+      "TruckNumber": "MH46AR5578",
+      "key": "truck-1699782308073"
+    },
+    "truck-1699782356844": {
+      "CreatedOn": "11/12/2023 15:15:56",
+      "TruckNumber": "MH46AR3513",
+      "key": "truck-1699782356844"
+    },
+    "truck-1699785309061": {
+      "CreatedOn": "11/12/2023 16:05:41",
+      "TruckNumber": "MH46AR7590",
+      "key": "truck-1699785309061"
+    },
+    "truck-1700384432298": {
+      "CreatedOn": "11/19/2023 14:30:32",
+      "TruckNumber": "MH46AR5578",
+      "key": "truck-1700384432298"
+    },
+    "truck-1700885226921": {
+      "CreatedOn": "11/25/2023 09:37:06",
+      "TruckNumber": "MH46CP2155",
+      "key": "truck-1700885226921"
+    },
+    "truck-1700885358344": {
+      "CreatedOn": "11/25/2023 09:39:18",
+      "TruckNumber": "4282",
+      "key": "truck-1700885358344"
+    },
+    "truck-1700885481834": {
+      "CreatedOn": "11/25/2023 09:41:21",
+      "TruckNumber": "MH46AR3513",
+      "key": "truck-1700885481834"
+    },
+    "truck-1700888564092": {
+      "CreatedOn": "11/25/2023 10:32:44",
+      "TruckNumber": "4282",
+      "key": "truck-1700888564092"
+    },
+    "truck-1700888672604": {
+      "CreatedOn": "11/25/2023 10:34:32",
+      "TruckNumber": "4282",
+      "key": "truck-1700888672604"
+    }
+  }
+}
