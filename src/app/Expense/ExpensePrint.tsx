@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
     flexGrow: 1,
   },
   table: {
-    display: "table",
+    display: "flex",
     width: "auto",
     borderStyle: "solid",
     borderWidth: 1,
