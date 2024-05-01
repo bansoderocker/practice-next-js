@@ -33,9 +33,11 @@ export default function Home() {
     Remark: "",
     CreatedOn: "",
     TripDate: format(new Date(), "dd-MM-yyyy"),
-    newParty: {} as _party,
+    newParty: { key: "", CreatedOn: "", pageNumber: 0, partyName: "" },
     Expense: [],
     partyKey: "",
+    filterPartyName: "",
+    pageStatus: 0,
   });
   return (
     <main className={styles.main}>

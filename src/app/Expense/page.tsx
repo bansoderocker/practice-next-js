@@ -57,6 +57,7 @@ export default function Expense() {
     partyKey: "",
     pageStatus: 0,
     filterPartyName: "",
+    newParty: { key: "", CreatedOn: "", pageNumber: 0, partyName: "" },
   });
   const {
     register,

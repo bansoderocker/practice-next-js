@@ -21,6 +21,7 @@ interface _expense {
   searchText: string;
   pageStatus: number;
   filterPartyName: string;
+  newParty: _party;
 }
 
 export default _expense;
