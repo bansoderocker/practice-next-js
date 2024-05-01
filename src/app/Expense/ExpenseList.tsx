@@ -35,10 +35,11 @@ const ExpenseList = (props: any) => {
                 BillNumber: x.BillNumber,
                 BillName: x.BillName,
                 Remark: x.Remark,
-                //  TripDate: format(data.TripDate, "dd-MM-yyyy"),
+                TripDate: x.TripDate,
                 tripExpenseList: [],
                 partyKey: x.partyKey,
                 isList: false,
+                pageStatus: 1,
               }));
             }}
           >
