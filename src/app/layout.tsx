@@ -41,7 +41,7 @@ export default function RootLayout({
         />
       </head>
       <body className={inter.className} suppressHydrationWarning={true}>
-        <h1>My Ticket Website</h1>
+        <h1>My Transport Website</h1>
         <div id="headerMenu" className="topnav">
           {navLinks.map((link, index) => (
             <Link

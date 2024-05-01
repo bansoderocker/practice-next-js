@@ -15,6 +15,8 @@ import { child, get, ref, set } from "firebase/database";
 import { database } from "../firebaseConfig";
 import ExpensePrint from "./ExpensePrint";
 import CommonButton from "../Component/CommonButton";
+import { tripDateYearFormat } from "../Component/CommonFunction";
+import { PDFDownloadLink } from "@react-pdf/renderer";
 
 export default function Expense() {
   //const [inputs, setAddEdit] = useState<_expense>();
@@ -102,13 +104,12 @@ export default function Expense() {
       })
       .catch((err) => console.log(err));
     //end
-  }, []);
+  }, [inputs.pageStatus]);
   const handleChange = (event: any) => {
     const targetName = event.target.name;
     const targetValue = event.target.value;
     console.log(`target Name ${targetName}`);
     console.log(`target Value ${targetValue}`);
-    setInputs((values) => ({ ...values, [targetName]: targetValue }));
 
     if (targetName == "amount") {
       let num1 = targetValue;
@@ -118,9 +119,23 @@ export default function Expense() {
         TripAmount: num1,
       }));
     }
+    let updateDate = "";
+    if (targetName == "TripDate") {
+      debugger;
+      if (
+        (targetValue.length == 2 && !isNaN(targetValue)) ||
+        targetValue.length == 5
+      ) {
+        updateDate = targetValue + "-";
+        setInputs((values) => ({ ...values, [targetName]: updateDate }));
+        return;
+      }
+    }
     if (targetName == "TripDate" && targetValue.length == 12) {
       // targetValue =  format(targetValue, "dd/MM/yyyy"),
     }
+
+    setInputs((values) => ({ ...values, [targetName]: targetValue }));
   };
 
   const SearchTextChange = (event: any) => {
@@ -129,7 +144,12 @@ export default function Expense() {
     console.log("targetValue");
     console.log(targetValue);
     let list = lstTrip;
-    list = list.filter((x) => x.BillName == targetValue);
+    // list = list.filter((x) => x.BillName == targetValue);
+    list = list.filter(
+      (x) =>
+        x.BillName == targetValue ||
+        x.partyKey.toLowerCase().includes(targetValue.toLowerCase())
+    );
     setInputs((values) => ({ ...values, [targetName]: targetValue }));
     if (targetValue.length > 0) setDisplayTrip(list);
     else setDisplayTrip(lstTrip);
@@ -185,40 +205,44 @@ export default function Expense() {
   const saveBillDetailsToFirebase = (event: any) => {
     console.log("inputs");
     console.log(inputs);
-    let UniqueIDkey = "";
-    if (inputs.key) {
-      UniqueIDkey = inputs.key;
-    } else {
-      UniqueIDkey = "Trip-" + new Date().getTime().toString();
-    }
-    const db_ref = child(ref(database), "Trip/" + UniqueIDkey);
-    let obj: _expense = inputs;
-    obj.key = UniqueIDkey;
-    obj.Particular = obj.ParticularFrom + " To " + obj.ParticularTo;
-    obj.Expense = lstTripExpense;
-    setTripExpense([]);
-    set(db_ref, obj);
+    if (inputs.TripDate.split("-").length == 3) {
+      let UniqueIDkey = "";
+      if (inputs.key) {
+        UniqueIDkey = inputs.key;
+      } else {
+        UniqueIDkey = "Trip-" + new Date().getTime().toString();
+      }
+      const db_ref = child(ref(database), "Trip/" + UniqueIDkey);
+      let obj: _expense = inputs;
+      obj.key = UniqueIDkey;
+      obj.Particular = obj.ParticularFrom + " To " + obj.ParticularTo;
+      obj.Expense = lstTripExpense;
+      obj.TripDate = tripDateYearFormat(inputs.TripDate);
+      setTripExpense([]);
+      set(db_ref, obj);
 
-    setInputs((values) => ({
-      ...values,
-      key: "",
-      searchText: "",
-      tempExpenseName: "",
-      tempExpenseAmount: 0,
-      amount: 0,
-      Particular: "",
-      ParticularFrom: "",
-      ParticularTo: "",
-      TripAmount: 0,
-      TruckNumber: "",
-      BillNumber: "",
-      Remark: "",
-      CreatedOn: "",
-      TripDate: format(new Date(), "dd-MM-yyyy"),
-      newParty: {} as _party,
-      tripExpenseList: [],
-      partyKey: "",
-    }));
+      setInputs((values) => ({
+        ...values,
+        key: "",
+        searchText: "",
+        tempExpenseName: "",
+        tempExpenseAmount: 0,
+        amount: 0,
+        Particular: "",
+        ParticularFrom: "",
+        ParticularTo: "",
+        TripAmount: 0,
+        TruckNumber: "",
+        BillNumber: "",
+        Remark: "",
+        CreatedOn: "",
+        TripDate: format(new Date(), "dd-MM-yyyy"),
+        newParty: {} as _party,
+        tripExpenseList: [],
+      }));
+    } else {
+      alert("Please enter proper date");
+    }
 
     alert("Bill Data added successfully");
   };
@@ -291,10 +315,10 @@ export default function Expense() {
       <div style={{ marginLeft: "5%", width: "90%" }}>
         <div className="row">
           {inputs.pageStatus == 0 && (
-            <div className="col-md-3">Records found : {lstTrip.length}</div>
+            <div className="col-md-2">Records found : {lstTrip.length}</div>
           )}
           {!(inputs.pageStatus == 0) && <div className="col-md-3"></div>}
-          <div className="col-md-2">
+          <div className="col-md-3">
             {inputs.pageStatus == 0 && (
               <input
                 type="text"
@@ -350,21 +374,24 @@ export default function Expense() {
             )}
           </div>
           <div className="col-md-2">
-            {inputs.pageStatus != 2 && (
-              <input
-                type="button"
-                className="from-control btn btn-primary"
-                name="btnViewExpense"
-                value="View Print"
-                id="btnViewExpense"
-                onClick={(event) => openExpenseAddEdit(2)}
-                style={{ width: "150px" }}
-              />             
-            )}
-             <CommonButton btnName = {"my btn"} />
+            {inputs.pageStatus != 2 &&
+              lstDisplayTrip.length > 0 &&
+              inputs.BillName.length > 0 && (
+                <PDFDownloadLink
+                  document={ExpensePrint(
+                    lstDisplayTrip,
+                    inputs.BillName,
+                    inputs.filterPartyName
+                  )}
+                  fileName={inputs.BillName}
+                  aria-orientation="vertical"
+                >
+                  <button className="btn btn-primary">PDF</button>
+                </PDFDownloadLink>
+              )}
+            <CommonButton btnName={"my btn"} />
           </div>
         </div>
-
         {inputs.pageStatus == 0 && (
           <center>
             <div id="divExpenseList" className={styles.description}>
@@ -434,7 +461,6 @@ export default function Expense() {
             </div>
           </center>
         )}
-
         {inputs.pageStatus == 1 && (
           <center>
             <div id="divEXpenseAddEdit" className={styles.description}>
@@ -680,7 +706,7 @@ export default function Expense() {
             </div>
           </center>
         )}
-        {inputs.pageStatus == 2 && (
+        {/* {inputs.pageStatus == 2 && (
           <center>
             <div id="divEXpenseView" className={styles.description}>
               <div className="content">
@@ -701,7 +727,14 @@ export default function Expense() {
               </div>
             </div>
           </center>
-        )}
+        )} */}
+        <div id="printableArea">
+          {ExpensePrint(
+            lstDisplayTrip,
+            inputs.BillName,
+            inputs.filterPartyName
+          )}
+        </div>
       </div>
     </main>
   );

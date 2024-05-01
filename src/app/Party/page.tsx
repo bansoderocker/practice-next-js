@@ -11,7 +11,9 @@ export default function Party() {
   const [inputs, setInputs] = useState({
     key: "",
     txtPartyName: "",
+    pageNumber: 0,
     searchText: "",
+    pageState: 0,
   });
   const [partys, setParty] = useState<_party[]>([]);
 
@@ -36,8 +38,8 @@ export default function Party() {
       .catch((err) => console.log(err));
 
     //PartyList();
-  }, []);
-
+  }, [inputs.pageState]);
+  console.log(inputs.pageState);
   const {
     register,
     handleSubmit,
@@ -67,21 +69,37 @@ export default function Party() {
       let UniqueIDkey = "";
       if (inputs.key) {
         UniqueIDkey = inputs.key;
-        deleteParty(inputs.key);
+        const db_ref = child(ref(database), "party/" + UniqueIDkey);
+        set(db_ref, {
+          partyName: inputs.txtPartyName,
+          pageNumber: inputs.pageNumber,
+          key: UniqueIDkey,
+        });
       } else {
         UniqueIDkey = "party-" + new Date().getTime().toString();
+        const db_ref = child(ref(database), "party/" + UniqueIDkey);
+        set(db_ref, {
+          partyName: inputs.txtPartyName,
+          pageNumber: inputs.pageNumber,
+          key: UniqueIDkey,
+        });
       }
-      const db_ref = child(ref(database), "party/" + UniqueIDkey);
 
-      set(db_ref, { partyName: inputs.txtPartyName, key: UniqueIDkey });
-      let obj: _party = {
-        partyName: inputs.txtPartyName,
-        key: UniqueIDkey,
-        CreatedOn: "",
-      };
+      // let obj: _party = {
+      //   partyName: inputs.txtPartyName,
+      //   key: UniqueIDkey,
+      //   pageNumber: inputs.pageNumber,
+      //   CreatedOn: "",
+      // };
 
-      setParty(partys.concat(obj));
-      setInputs({ key: "", txtPartyName: "", searchText: "" });
+      // setParty(partys.concat(obj));
+      setInputs({
+        key: "",
+        txtPartyName: "",
+        searchText: "",
+        pageNumber: partys.length + 1,
+        pageState: inputs.pageState + 1,
+      });
 
       alert("Party Data added successfully");
     } else {
@@ -95,6 +113,8 @@ export default function Party() {
       key: data.key,
       txtPartyName: data.partyName,
       searchText: "",
+      pageNumber: data.pageNumber,
+      pageState: inputs.pageState + 1,
     });
   };
   const deleteParty = (key: string) => {
@@ -116,6 +136,7 @@ export default function Party() {
         <tr key={index}>
           <td style={{ tableLayout: "fixed", width: "10%" }}>{index + 1}</td>
           <td>{x.partyName}</td>
+          <td style={{ tableLayout: "fixed", width: "10%" }}>{x.pageNumber}</td>
           <td>
             <button
               className="from-control btn btn-warning"
@@ -136,7 +157,7 @@ export default function Party() {
     } else {
       return (
         <tr>
-          <td rowSpan={3}>no records found</td>
+          <td rowSpan={4}>no records found</td>
         </tr>
       );
     }
@@ -149,11 +170,8 @@ export default function Party() {
           <div className="container h-100">
             <div className="row table table-striped thead-light">
               <div className="col-md-3"></div>
-              <div className="col-md-2">
-                <label>Party Name</label>
-              </div>
-
               <div className="col-md-3">
+                <label>Party Name</label>
                 <input
                   type="text"
                   className="from-control"
@@ -164,6 +182,22 @@ export default function Party() {
                   value={inputs.txtPartyName}
                   onChange={handleChange}
                   placeholder="Enter Party Name"
+                />
+              </div>
+
+              <div className="col-md-3">
+                <label>Page No</label>
+                <br />
+                <input
+                  type="text"
+                  className="from-control"
+                  id="txtPageNo"
+                  {...register("pageNumber", {
+                    required: "This is required.",
+                  })}
+                  value={inputs.pageNumber}
+                  onChange={handleChange}
+                  placeholder="Enter Page No"
                 />
                 {errors.txtPartyName && <span> Please enter Party Name</span>}
               </div>
@@ -208,6 +242,12 @@ export default function Party() {
                       sr No
                     </th>
                     <th scope="col">Party Name</th>
+                    <th
+                      scope="col"
+                      style={{ tableLayout: "fixed", width: "10%" }}
+                    >
+                      Page No
+                    </th>
                     <th scope="col">Action</th>
                   </tr>
                 </thead>
