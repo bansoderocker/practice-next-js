@@ -374,7 +374,7 @@ export default function Expense() {
               />
             )}
           </div>
-          <div className="col-md-2">
+          {/* <div className="col-md-2">
             {inputs.pageStatus != 2 &&
               lstDisplayTrip.length > 0 &&
               inputs.BillName.length > 0 && (
@@ -391,7 +391,7 @@ export default function Expense() {
                 </PDFDownloadLink>
               )}
             <CommonButton btnName={"my btn"} />
-          </div>
+          </div> */}
         </div>
         {inputs.pageStatus == 0 && (
           <center>
@@ -729,13 +729,13 @@ export default function Expense() {
             </div>
           </center>
         )} */}
-        <div id="printableArea">
+        {/* <div id="printableArea">
           {ExpensePrint(
             lstDisplayTrip,
             inputs.BillName,
             inputs.filterPartyName
           )}
-        </div>
+        </div> */}
       </div>
     </main>
   );
