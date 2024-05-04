@@ -104,6 +104,18 @@ export default function Expense() {
         }
       })
       .catch((err) => console.log(err));
+
+    get(expenseTypeRef)
+      .then((snapshot) => {
+        if (snapshot.exists()) {
+          const _array = Object.entries(snapshot.val()).map(([id, data]) => ({
+            id,
+            ...(data as Lookup),
+          }));
+          setExpenseType(_array);
+        }
+      })
+      .catch((err) => console.log(err));
     //end
   }, [inputs.pageStatus]);
   const handleChange = (event: any) => {

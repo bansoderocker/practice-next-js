@@ -3,8 +3,8 @@ import _expense from "../Interface/Expense";
 import _party from "../Interface/Party";
 
 const ExpenseList = (props: any) => {
-  console.log("lstTrip list");
-  console.log(props.lstExpenseList);
+  //console.log("lstTrip list");
+  //console.log(props.lstExpenseList);
   let lstExpenseList: _expense[] = props.lstExpenseList;
   if (lstExpenseList.length > 0) {
     return lstExpenseList.map((x, index) => (

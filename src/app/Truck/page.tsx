@@ -1,11 +1,15 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import _truck from "../Interface/Truck";
 import { useForm } from "react-hook-form";
 import styles from "../page.module.css";
 import { database } from "../firebaseConfig";
 import { child, push, ref, set, get, remove } from "firebase/database";
 import "bootstrap/dist/css/bootstrap.css";
+import { Bounce, toast } from "react-toastify";
+import { DataGrid } from "@mui/x-data-grid";
+import { Button } from "@mui/material";
+import { event } from "jquery";
 
 export default function Truck() {
   const [inputs, setInputs] = useState({
@@ -13,6 +17,7 @@ export default function Truck() {
     txtTruckNumber: "",
     searchText: "",
   });
+
   const [trucks, setTrucks] = useState<_truck[]>([]);
 
   const {
@@ -36,27 +41,30 @@ export default function Truck() {
   const saveTruckDetailsToFirebase = (
     event: React.MouseEvent<HTMLInputElement, MouseEvent>
   ) => {
-    console.log("inputs");
-    console.log(inputs);
-    let UniqueIDkey = "";
-    if (inputs.key) {
-      UniqueIDkey = inputs.key;
+    if (inputs.txtTruckNumber.length > 0) {
+      let UniqueIDkey = "";
+      if (inputs.key.length > 0) {
+        UniqueIDkey = inputs.key;
+      } else {
+        UniqueIDkey = "truck-" + new Date().getTime().toString();
+      }
+      const db_ref = child(ref(database), "truck/" + UniqueIDkey);
+
+      set(db_ref, { TruckNumber: inputs.txtTruckNumber, key: UniqueIDkey });
+      let obj: _truck = {
+        TruckNumber: inputs.txtTruckNumber,
+        key: UniqueIDkey,
+        CreatedOn: "",
+        Id: trucks.length + 1,
+      };
+      setTrucks(trucks.concat(obj));
+      setInputs({ key: "", txtTruckNumber: "", searchText: "" });
+
+      alert("Truck Data added successfully");
+      sessionStorage.clear();
     } else {
-      UniqueIDkey = "truck-" + new Date().getTime().toString();
+      alert("Truck Number should not be blank.");
     }
-    const db_ref = child(ref(database), "truck/" + UniqueIDkey);
-
-    set(db_ref, { TruckNumber: inputs.txtTruckNumber, key: UniqueIDkey });
-    let obj: _truck = {
-      TruckNumber: inputs.txtTruckNumber,
-      key: UniqueIDkey,
-      CreatedOn: "",
-    };
-    setTrucks(trucks.concat(obj));
-    setInputs({ key: "", txtTruckNumber: "", searchText: "" });
-
-    alert("Truck Data added successfully");
-    sessionStorage.clear();
   };
 
   const editTruck = (data: _truck) => {
@@ -84,6 +92,7 @@ export default function Truck() {
           let truckGridList: _truck[] = [];
           snapshot.forEach(function (childSnapshot) {
             var childData = childSnapshot.val();
+            childData.Id = truckGridList.length + 1;
             truckGridList.push(childData);
           });
           setTrucks(truckGridList);
@@ -124,6 +133,40 @@ export default function Truck() {
     }
   };
 
+  const truck_columns = useMemo(
+    () => [
+      { field: "Id", headerName: "Id", width: 100 },
+      { field: "TruckNumber", headerName: "Truck Number", width: 200 },
+      // {
+      //   field: "Edit",
+      //   renderCell: (cellValues) => {
+      //     return (
+      //       <Button
+      //         variant="contained"
+      //         color="warning"
+      //         onClick={(event) => {
+      //           handleClick(event, cellValues);
+      //         }}
+      //       >
+      //         Edit
+      //       </Button>
+      //     );
+      //   },
+      // },
+      // {
+      //   field: "Delete",
+      //   renderCell: () => {
+      //     return (
+      //       <Button variant="contained" color="error">
+      //         Delete
+      //       </Button>
+      //     );
+      //   },
+      // },
+    ],
+    []
+  );
+
   return (
     <main className={styles.main}>
       <div className={styles.description}>
@@ -159,15 +202,13 @@ export default function Truck() {
                   value="Add Truck"
                   id="btnAddEditTruck"
                   onClick={(event) => saveTruckDetailsToFirebase(event)}
-                  style={{ width: "150px" }}
                 />
               </div>
               <div className="col-md-3"></div>
             </div>
           </div>
           <div className="row">
-            <div className="col-md-3"></div>
-            <div className="col-md-6">
+            <div className="col-md-12">
               <table className="table">
                 <thead>
                   <tr>
@@ -194,10 +235,25 @@ export default function Truck() {
                   <TruckList />
                 </tbody>
               </table>
+              {/* <DataGrid
+                columns={truck_columns}
+                rows={trucks}
+                getRowId={(row: any) => generateRandom()}
+                onRowClick={(event) => setInputs(event.row)}
+              /> */}
             </div>
           </div>
         </div>
       </div>
     </main>
   );
+}
+function generateRandom() {
+  var length = 8,
+    charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789",
+    retVal = "";
+  for (var i = 0, n = charset.length; i < length; ++i) {
+    retVal += charset.charAt(Math.floor(Math.random() * n));
+  }
+  return retVal;
 }

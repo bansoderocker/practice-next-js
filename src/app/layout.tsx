@@ -8,10 +8,12 @@ import "./css/common.css";
 import "bootstrap/dist/css/bootstrap.css";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
+import { Toaster } from "react-hot-toast";
 
 const navLinks = [
   { name: "Bill", href: "/Expense" },
   { name: "Party", href: "/Party" },
+  { name: "Account", href: "/Account" },
   { name: "Truck", href: "/Truck" },
   { name: "Expense", href: "/ExpenseType" },
   { name: "About", href: "/About" },
