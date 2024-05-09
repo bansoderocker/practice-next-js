@@ -9,6 +9,14 @@ import "bootstrap/dist/css/bootstrap.css";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { Toaster } from "react-hot-toast";
+import { useRouter } from "next/router";
+import { ReactNode, useState } from "react";
+const router = useRouter();
+const [user, setUser] = useState(null);
+
+interface LayoutProps {
+  children: ReactNode;
+}
 
 const navLinks = [
   { name: "Bill", href: "/Expense" },
