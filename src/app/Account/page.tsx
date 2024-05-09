@@ -9,7 +9,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import _account from "../Interface/Account";
 import Lookup from "../Interface/Lookup";
 
-export default function Party() {
+export default function Account() {
   const [inputs, setInputs] = useState({
     key: "",
     searchText: "",
