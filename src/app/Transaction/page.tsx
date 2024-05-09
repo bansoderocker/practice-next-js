@@ -8,7 +8,7 @@ import { child, push, ref, set, get, remove } from "firebase/database";
 import "bootstrap/dist/css/bootstrap.css";
 import { lookup } from "dns";
 
-export default function ExpenseType() {
+export default function Transaction() {
   const [inputs, setInputs] = useState({
     key: "",
     txtPartyName: "",
