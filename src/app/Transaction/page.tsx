@@ -6,7 +6,6 @@ import styles from "../page.module.css";
 import { database } from "../firebaseConfig";
 import { child, push, ref, set, get, remove } from "firebase/database";
 import "bootstrap/dist/css/bootstrap.css";
-import { lookup } from "dns";
 
 export default function Transaction() {
   const [inputs, setInputs] = useState({

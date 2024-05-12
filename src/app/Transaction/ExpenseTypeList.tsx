@@ -4,7 +4,6 @@ import _party from "../Interface/Party";
 import { database } from "../firebaseConfig";
 import { get, ref } from "firebase/database";
 import "bootstrap/dist/css/bootstrap.css";
-import editParty from "./page";
 import Lookup from "../Interface/Lookup";
 
 // async function getPartyList() {}
