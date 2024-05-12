@@ -2,17 +2,13 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import NavLink from "next/link";
 import "./css/common.css";
 // add bootstrap css
 import "bootstrap/dist/css/bootstrap.css";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { Toaster } from "react-hot-toast";
-import { useRouter } from "next/router";
 import { ReactNode, useState } from "react";
-const router = useRouter();
-const [user, setUser] = useState(null);
+// const router = useRouter();
 
 interface LayoutProps {
   children: ReactNode;
