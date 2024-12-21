@@ -58,8 +58,8 @@ const Dashboard = () => {
         toDate: "31 Dec 2024",
       },
       puc: {
-        fromDate: "20 Jun 2024",
-        toDate: "19 Dec 2024",
+        fromDate: "19 Dec 2024",
+        toDate: "18 Jun 2025",
       },
       insurance: {
         fromDate: "19 Nov 2024",
