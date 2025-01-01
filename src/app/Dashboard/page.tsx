@@ -55,7 +55,7 @@ const Dashboard = () => {
       registrationDate: "07 Jan 2016",
       tax: {
         fromDate: "01 Oct 2024",
-        toDate: "31 Dec 2024",
+        toDate: "31 Mar 2025",
       },
       puc: {
         fromDate: "19 Dec 2024",
@@ -67,7 +67,7 @@ const Dashboard = () => {
       },
       permit: {
         fromDate: null,
-        toDate: null,
+        toDate: "03 Oct 2026",
       },
       fitness: {
         fromDate: "19 Jan 2024",
@@ -102,8 +102,8 @@ const Dashboard = () => {
       vehicleNumber: "MH46BM4282",
       registrationDate: null,
       tax: {
-        fromDate: null,
-        toDate: "31 Dec 2024",
+        fromDate: "01 Jan 2025",
+        toDate: "31 Dec 2025",
       },
       puc: {
         fromDate: null,
